@@ -1,0 +1,17 @@
+# packages
+node_modules/
+
+# ts
+build/
+tsconfig.tsbuildinfo
+
+# DS_Store
+.DS_Store
+
+# .npmrc
+.npmrc
+
+# yarn
+yarn-error.log
+
+.next/
