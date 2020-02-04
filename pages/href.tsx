@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import links from '../config/links';
+import { Grid } from '@material-ui/core';
+import PageTemplate from '../templates/page-layout';
 
 const LinkEl = props => {
 
@@ -15,16 +17,20 @@ const LinkEl = props => {
 const Index = props => {
     console.log('Props::', props)
     return (
-        <div>
-            <h2>{props.initialData.state.Title}</h2>
-            <p>Hello Next.js</p>
-            <pre>{ JSON.stringify(props.initialData.startDate) }</pre>
-            <ul>
-                { props.initialData.links.map(
-                    (link) => (<LinkEl href={link.href} title={link.title} /> ) 
-                ) }
-            </ul>
-        </div>
+        <PageTemplate>
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <h2>{props.initialData.state.Title}</h2>
+                    <p>Hello Next.js</p>
+                    <pre>{ JSON.stringify(props.initialData.startDate) }</pre>
+                    <ul>
+                        { props.initialData.links.map(
+                            (link) => (<LinkEl href={link.href} title={link.title} /> ) 
+                        ) }
+                    </ul>
+                </Grid>
+            </Grid>
+        </PageTemplate>
     );
 };
 
