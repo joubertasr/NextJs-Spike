@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import useSWR from 'swr';
 import links from '../config/links';
+import fetch from 'isomorphic-unfetch'
 
 import PageTemplate from '../templates/page-layout';
 
@@ -24,10 +25,16 @@ const LinkEl = props => {
 }
 
 const Index = props => {
-    const { data, error } = useSWR('/api/randomQuote', fetcher);
 
+    const twitterInfo = {card: 'twitCard', description: 'twitDesc', title: 'twitTitle'};
+    if (props.initialData.drinkInfo && props.initialData.drinkInfo.id) {
+        const drinkInfo = props.initialData.drinkInfo;
+        twitterInfo.card = drinkInfo.creator.name;
+        twitterInfo.description = drinkInfo.location.name;
+        twitterInfo.title = drinkInfo.title
+    }
     return (
-        <PageTemplate>
+        <PageTemplate twitter={ twitterInfo }>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <h2>{props.initialData.state.Title}</h2>
@@ -42,12 +49,6 @@ const Index = props => {
                 </Grid>
                 <Grid item xs={3}>
                     <h3>Quote of the day</h3>
-                    {
-                        data && <p>{ data.quote }</p>
-                    }
-                    {
-                        !data && <p>Loading...</p>
-                    }
                 </Grid>
             </Grid>
         </PageTemplate>
@@ -62,7 +63,15 @@ Index.getInitialProps = async function() {
         },
         links,
         startDate: new Date(),
+        drinkInfo: {}
     };
+
+    // Call the local api to fetch initial data, make sure to await for result
+    // uses isomorphic fetch as per import above
+    const data = await fetch('http://localhost:3000/api/drinks/5/1').then(r => r.json());
+
+    // If there is data its an array and we want a single object
+    initialData.drinkInfo = data && Array.isArray(data) ? data.pop() : {};
     
     return {
         initialData

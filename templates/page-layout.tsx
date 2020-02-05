@@ -6,11 +6,17 @@ import {
      Grid
  } from '@material-ui/core';
 
+ import Head from 'next/Head';
  
 const PageTemplate = props => {
 
     return (
         <div>
+            <Head>
+                <meta name="twitter:card" content={props.twitter ? props.twitter.card : ''} />
+                <meta name="twitter:description" content={props.twitter ? props.twitter.description : ''} />
+                <meta name="twitter:title" content={props.twitter ? props.twitter.title : ''} />
+            </Head>
             <Container>
                 <AppBar position="static">
                     <Toolbar>

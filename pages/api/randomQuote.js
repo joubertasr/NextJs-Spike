@@ -23,6 +23,7 @@ const quotes = [
 ];
 
 export default (req, res) => {
+    console.log('randomQuote', {req});
     const quote = quotes[Math.floor(Math.random() * quotes.length)];
     const t = setTimeout(()=>{
         res.status(200).json(quote);
