@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import links from '../../config/links';
+import links from '../../../../config/links';
 
 import { Grid } from '@material-ui/core';
-import PageTemplate from '../../templates/page-layout';
+import PageTemplate from '../../../../templates/page-layout';
 
 const LinkEl = props => {
 
@@ -30,7 +30,7 @@ const Index = props => {
                 {
                     pageSelected && (
                         <Grid item xs={5}>
-                            <h2>{ pageSelected.title }</h2>
+                            <h2>{ pageSelected.title } - <i>{router.query.hasOwnProperty('name') ? router.query.name : 'Nope'}</i></h2>
                             <p>Hello Next.js</p>
                             <pre>{ JSON.stringify(props.initialData.startDate) }</pre>
                         </Grid>
