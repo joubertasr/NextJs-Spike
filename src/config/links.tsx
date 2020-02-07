@@ -7,7 +7,9 @@ const links = [
     {id:'four', href: '/generic/four', title: 'Page 4 generic'},
     {id:'five', href: '/generic/five', title: 'Page 5IVE generic'},
     {id:'sixteen', href: '/generic/sixteen', title: 'Page Six generic'},
-    {id:'', href: 'one', title: 'PAGE 1'}
+    {id:'', href: 'one', title: 'PAGE 1'},
+    {id:'', href: '/drinks/1/4/', title: 'Drink list page one'},
+    {id:'', href: '/drinks/2/4/', title: 'Drink list page two'}
 ];
 
 export default links;

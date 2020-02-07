@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { URLSearchParams } from 'url';
+import * as url from "url";
 
 import fetcher from './fetcher';
 
@@ -29,10 +28,23 @@ export default class Drinks {
         }
 
         const fetchUrl = url + '?' + urlParams.toString();
-        console.log('??????', fetchUrl);
+
+        console.log('   drink list query url:', fetchUrl);
+        
         const drinksRes = await fetcher(fetchUrl);
-        console.log('    ::', drinksRes.data);
-        //return [];
+        
+        return drinksRes.data;
+    }
+
+    public static async getDrinksFromAPIByID(id: number) {
+        let url = this.endpoint;
+
+        const fetchUrl = url + '/' + id;
+
+        console.log('   drink list query url:', fetchUrl);
+        
+        const drinksRes = await fetcher(fetchUrl);
+        
         return drinksRes.data;
     }
 };

@@ -1,17 +1,15 @@
 import Link from 'next/link';
 import useSWR from 'swr';
 import links from '../config/links';
-import fetch from 'isomorphic-unfetch'
+import fetch from 'isomorphic-unfetch';
+
+import Drinks from '../services/drinks';
 
 import PageTemplate from '../templates/page-layout';
 
 import {
     Grid
 } from '@material-ui/core';
-
-function fetcher(url) {
-  return fetch(url).then(r => r.json());
-}
 
 const LinkEl = props => {
 
@@ -47,9 +45,6 @@ const Index = props => {
                         ) }
                     </ul>
                 </Grid>
-                <Grid item xs={3}>
-                    <h3>Quote of the day</h3>
-                </Grid>
             </Grid>
         </PageTemplate>
     );
@@ -68,11 +63,11 @@ Index.getInitialProps = async function() {
 
     // Call the local api to fetch initial data, make sure to await for result
     // uses isomorphic fetch as per import above
-    const data = await fetch('http://localhost:3000/api/drinks/5/1').then(r => r.json());
+    const data = await Drinks.getDrinksFromAPI({pageNumber: 5, pageSize: 1, searchTerm: null});
 
     // If there is data its an array and we want a single object
     initialData.drinkInfo = data && Array.isArray(data) ? data.pop() : {};
-    
+
     return {
         initialData
     };
