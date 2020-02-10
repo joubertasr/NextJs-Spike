@@ -8,6 +8,19 @@ A spike for nextJS usage, to get an understanding of the framework dynamics and 
 
 Also looking at possible UI scaffolding mostly for layout grids but other elements we could leverage. As already familiar with Bootstrap going to look at Material Design implementation Material UI.
 
+Jira issue: [SR-576](https://silicon-rhino.atlassian.net/browse/SR-576)
+
+### Running it
+To keep it simple used yarn without any containerisation so:
+
+`yarn install`
+
+To get all the dependencies installed, then:
+
+`yarn dev`
+
+To get started.
+
 ### Work achieved:
  - Placed source files in src folder to match CRA file structure.
  - Add dynamic routes for:
